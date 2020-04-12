@@ -4,9 +4,6 @@ import logging
 
 logging.basicConfig(filename="server_log.txt", level=logging.DEBUG)
 
-logging.debug('Debug level messages encompass all other log levels.')
-logging.info('Status quo')
-logging.warning('Something might be a bit off')
 db = []
 
 app = Flask(__name__)
@@ -23,48 +20,48 @@ def verify_info(in_dict, expected_keys, expected_type):
                 in_dict[key] = int(in_dict[key])
     return in_dict, True
 
-
+'''
 def is_tachy(age, hr, patient_id, email):
     if 1 <= age <= 2 and hr > 151:
-        stat = "tachycardic"
+        state = "tachycardic"
         logging.info(
             "Patient {} has a tachycardic HR of {}. Contacted {}".format(
                 patient_id, hr, email))
-        return stat
+        return state
     elif 3 <= age <= 4 and hr > 137:
-        stat = "tachycardic"
+        state = "tachycardic"
         logging.info(
             "Patient {} has a tachycardic HR of {}. Contacted {}".format(
                 patient_id, hr, email))
-        return stat
+        return state
     elif 5 <= age <= 7 and hr > 133:
-        stat = "tachycardic"
+        state = "tachycardic"
         logging.info(
             "Patient {} has a tachycardic HR of {}. Contacted {}".format(
                 patient_id, hr, email))
-        return stat
+        return state
     elif 8 <= age <= 11 and hr > 130:
-        stat = "tachycardic"
+        state = "tachycardic"
         logging.info(
             "Patient {} has a tachycardic HR of {}. Contacted {}".format(
                 patient_id, hr, email))
-        return stat
+        return state
     elif 12 <= age <= 15 and hr > 119:
-        stat = "tachycardic"
+        state = "tachycardic"
         logging.info(
             "Patient {} has a tachycardic HR of {}. Contacted {}".format(
                 patient_id, hr, email))
-        return stat
+        return state
     elif age > 15 and hr > 100:
-        stat = "tachycardic"
+        state = "tachycardic"
         logging.info(
             "Patient {} has a tachycardic HR of {}. Contacted {}".format(
                 patient_id, hr, email))
-        return stat
+        return state
     else:
-        stat = "not tachycardic"
-        return stat
-
+        state = "not tachycardic"
+        return state
+'''
 
 @app.route("/api/new_patient/", methods=["POST"])
 def add_patient():
@@ -81,7 +78,7 @@ def add_patient():
     logging.info("Patient {} has been added".format(pat["patient_ID"]))
     return "Patient Added", True
 
-
+'''
 @app.route("/api/heart_rate/", methods=["POST"])
 def import_HR():
     patient_HR = request.json()
@@ -148,7 +145,7 @@ def import_int_avg():
     if valid is not True:
         return pat, 400
     int_avg, valid = find_pat(pat)
-    return jsonify(int_avg), valid
+    return jsonify(int_avg), 200
 
 
 def find_pat(pat):
@@ -175,9 +172,10 @@ def find_int_avg(input_time, item):
             if j == k:
                 hr_list.append(HR)
     int_avg = average(hr_list)
+
     return int_avg
 
-
+'''
 def error(status_code, text, err_type):
     error_output = {
         "status_code": status_code,
@@ -187,5 +185,5 @@ def error(status_code, text, err_type):
     return jsonify(error_output)
 
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5004, debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)

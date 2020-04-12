@@ -1,7 +1,7 @@
 import requests
 
-# server_name="vcm-14488.vm.duke.edu:5004"
-server_name="https:127.0.0.1:500"
+# server_name = "vcm-14488.vm.duke.edu:5004"
+server_name = "https:127.0.0.1:5000"
 
 new_patient = {"patient_id": "100000000",
                "attending_email": "r_user_id@yourdomain.com",
