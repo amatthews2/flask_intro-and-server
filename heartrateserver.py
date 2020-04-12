@@ -20,6 +20,7 @@ def verify_info(in_dict, expected_keys, expected_type):
                 in_dict[key] = int(in_dict[key])
     return in_dict, True
 
+
 '''
 def is_tachy(age, hr, patient_id, email):
     if 1 <= age <= 2 and hr > 151:
@@ -63,6 +64,7 @@ def is_tachy(age, hr, patient_id, email):
         return state
 '''
 
+
 @app.route("/api/new_patient/", methods=["POST"])
 def add_patient():
     new_patient = request.json()
@@ -77,6 +79,7 @@ def add_patient():
     db.append(pat)
     logging.info("Patient {} has been added".format(pat["patient_ID"]))
     return "Patient Added", True
+
 
 '''
 @app.route("/api/heart_rate/", methods=["POST"])
@@ -176,6 +179,8 @@ def find_int_avg(input_time, item):
     return int_avg
 
 '''
+
+
 def error(status_code, text, err_type):
     error_output = {
         "status_code": status_code,
