@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import datetime
 import logging
 
-logging.basicConfig(filename="server_log.txt", level=logging.DEBUG)
+logging.basicConfig(filename="server56_log.txt", level=logging.DEBUG)
 
 db = []
 
@@ -21,7 +21,6 @@ def verify_info(in_dict, expected_keys, expected_type):
     return in_dict, True
 
 
-'''
 def is_tachy(age, hr, patient_id, email):
     if 1 <= age <= 2 and hr > 151:
         state = "tachycardic"
@@ -62,7 +61,11 @@ def is_tachy(age, hr, patient_id, email):
     else:
         state = "not tachycardic"
         return state
-'''
+
+
+@app.route("/")
+def say():
+    return "hi"
 
 
 @app.route("/api/new_patient/", methods=["POST"])
@@ -81,7 +84,6 @@ def add_patient():
     return "Patient Added", True
 
 
-'''
 @app.route("/api/heart_rate/", methods=["POST"])
 def import_HR():
     patient_HR = request.json()
@@ -175,10 +177,7 @@ def find_int_avg(input_time, item):
             if j == k:
                 hr_list.append(HR)
     int_avg = average(hr_list)
-
     return int_avg
-
-'''
 
 
 def error(status_code, text, err_type):
